@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: url('product1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+    .cart-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    .cart-item {
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      padding: 15px;
+      border-radius: 10px;
+      width: 250px;
+    }
+    .cart-item img {
+      width: 150px;
+      height: 150px;
+      border-radius: 10px;
+    }
+    .quantity-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .quantity-btn {
+      padding: 5px 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      background: gray;
+      color: white;
+      border-radius: 5px;
+    }
+    #grand-total-container {
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      padding: 10px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+    .checkout-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .checkout-btn:hover {
+      background: darkgreen;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Cart</h1>
+  <div class="cart-container" id="cart-container"></div>
+  <div id="grand-total-container">Grand Total: $<span id="grand-total">0</span></div><br>
+  <button class="checkout-btn" onclick="checkout()">Proceed to Payment</button>
+
+  <script>
+    let cart = [];
+
+    function getCartFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const names = urlParams.getAll('name[]');
+      const prices = urlParams.getAll('price[]');
+      const quantities = urlParams.getAll('quantity[]');
+      const images = urlParams.getAll('image[]');
+
+      let result = [];
+
+      for (let i = 0; i < names.length; i++) {
+        result.push({
+          name: decodeURIComponent(names[i]),
+          price: parseFloat(prices[i]),
+          quantity: parseInt(quantities[i]),
+          image: decodeURIComponent(images[i])
+        });
+      }
+
+      return result;
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cart-container');
+      container.innerHTML = '';
+      let grandTotal = 0;
+
+      cart.forEach((item, index) => {
+        let total = item.price * item.quantity;
+        grandTotal += total;
+
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <h2>${item.name}</h2>
+          <p>Price: $${item.price}</p>
+          <div class="quantity-controls">
+            <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+            <span id="quantity-${index}">${item.quantity}</span>
+            <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+          </div>
+          <p><strong>Total: $<span id="total-${index}">${total}</span></strong></p>
+        `;
+        container.appendChild(div);
+      });
+
+      document.getElementById('grand-total').innerText = grandTotal.toFixed(2);
+    }
+
+    function updateQuantity(index, change) {
+      if (cart[index].quantity + change > 0) {
+        cart[index].quantity += change;
+        renderCart();
+      }
+    }
+
+    function checkout() {
+      const total = document.getElementById('grand-total').innerText;
+      alert(`Proceeding to payment of $${total}...`);
+      // Redirect example (optional)
+      // window.location.href = `confirmpayment.html?amount=${total}`;
+    }
+
+    // Initialize cart and render
+    cart = getCartFromURL();
+    renderCart();
+  </script>
+</body>
+</html>

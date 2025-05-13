@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Unique Products Store</title>
+    <link rel="stylesheet" href="styles.css" />
+    
+</head>
+<header style="text-align: center; background-color: #63898b; padding: 10px;">
+   <!-- Header with logo and search bar -->
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+    <!-- Empty space to push logo to the right -->
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+
+    <!-- Logo on the left -->
+    <img src="logo.png" alt="HAMMYX Logo" style="height: 80px;">
+
+    <!-- Search + Cart on the right -->
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <input type="text" id="search" placeholder="Search products..." 
+               onkeyup="searchProducts()" 
+               style="width: 300px; height: 30px; font-size: 18px; padding: 10px;">
+        
+        <div class="cart" onclick="viewCart()" style="cursor: pointer;">
+            🛒 Cart (<span id="cart-count">0</span>)
+        </div>
+    </div>
+
+</div>
+
+<!-- Floating welcome message -->
+<marquee behavior="scroll" direction="left" style="font-size: 50px; font-weight: bold; margin-bottom: 20px;">
+   <I> WELCOME TO HAMMYX UNIQUE STORE</I>
+</marquee>
+
+</header>
+<body>
+    
+    <div id="products">
+        <div class="product" data-name="Givenchy Bag" data-price="30" data-image="bag1.jpeg" onclick="addToCart('Givenchy ', 30, 'bag1.jpeg')">
+            <img src="bag1.jpeg" alt="">
+            <h2>Givenchy Bag</h2>
+            <p>Price: $30</p>
+        </div>
+        
+        <div class="product" data-name="CK Bag" data-price="35" data-image="bag2.jpg" onclick="addToCart('CK ', 35, 'bag2.jpg')">
+            <img src="bag2.jpg" alt="">
+            <h2>CK Bag</h2>
+            <p>Price: $35</p>
+        </div>
+        <div class="product" data-name="Givenchy Bag" data-price="75" data-image="clock.jpg" onclick="addToCart('Givenchy1 ', 45, 'bag3.jpg')">
+            <img src="bag3.jpg" alt="">
+            <h2>Givenchy Bag</h2>
+            <p>Price: $45</p>
+        </div>
+        <div class="product" data-name="Givenchy Bag" data-price="75" data-image="clock.jpg" onclick="addToCart('Givenchy2', 45, 'bag4.jpg')">
+            <img src="bag4.jpg" alt="">
+            <h2>Givenchy Bag</h2>
+            <p>Price: $45</p>
+        </div>
+        <div class="product" data-name="Saint Laurent Bag" data-price="75" data-image="clock.jpg" onclick="addToCart('Saint Laurent', 65, 'bag5.jpeg')">
+            <img src="bag5.jpeg" alt="">
+            <h2>Saint Laurent Bag</h2>
+            <p>Price: $65</p>
+        </div>
+        <div class="product" data-name="Saint Laurent Bag" data-price="75" data-image="clock.jpg" onclick="addToCart('Saint Laurent1', 65, 'bag6.jpg')">
+            <img src="bag6.jpg" alt="">
+            <h2>Saint Laurent Bag</h2>
+            <p>Price: $65</p>
+        </div>
+        <div class="product" data-name="Loewe Bag" data-price="75" data-image="clock.jpg" onclick="addToCart('Loewe', 75, 'bag7.jpg')">
+            <img src="bag7.jpg" alt="">
+            <h2>Loewe Bag</h2>
+            <p>Price: $75</p>
+        </div>
+        <div class="product" data-name="Loewe Bag" data-price="75" data-image="clock.jpg" onclick="addToCart('Loewe1', 75, 'bag8.jpg')">
+            <img src="bag8.jpg" alt="">
+            <h2>Loewe Bag</h2>
+            <p>Price: $75</p>
+        </div>
+        <div class="product" data-name="Loewe Bag" data-price="75" data-image="clock.jpg" onclick="addToCart('Loewe2', 75, 'bag9.jpg')">
+            <img src="bag9.jpg" alt="">
+            <h2>Loewe Bag</h2>
+            <p>Price: $75</p>
+        </div>
+        <div class="product" data-name="Saint Laurent Bagk" data-price="75" data-image="clock.jpg" onclick="addToCart('Saint Laurent2', 75, 'bag10.jpg')">
+            <img src="bag10.jpg" alt="">
+            <h2>Saint Laurent Bag</h2>
+            <p>Price: $75</p>
+        </div>
+        <div class="product" data-name="O-neck Dress" data-price="75" data-image="clock.jpg" onclick="addToCart('O-neck', 55, 'dress1.jpg')">
+            <img src="dress1.jpg" alt="">
+            <h2>O-neck Dress</h2>
+            <p>Price: $55</p>
+        </div>
+        <div class="product" data-name="O-neck Dress" data-price="75" data-image="clock.jpg" onclick="addToCart('O-neck1', 55, 'dress2.jpg')">
+            <img src="dress2.jpg" alt="">
+            <h2>O-neck Dress</h2>
+            <p>Price: $55</p>
+        </div>
+        <div class="product" data-name="O-neck Dress" data-price="75" data-image="clock.jpg" onclick="addToCart('O-neck2', 55, 'dress3.jpeg')">
+            <img src="dress3.jpeg" alt="">
+            <h2>O-neck Dress</h2>
+            <p>Price: $55</p>
+        </div>
+        <div class="product" data-name="O-neck Dress" data-price="75" data-image="clock.jpg" onclick="addToCart('O-neck3', 55, 'dress4.jpeg')">
+            <img src="dress4.jpeg" alt="">
+            <h2>O-neck Dress</h2>
+            <p>Price: $55</p>
+        </div>
+        <div class="product" data-name="O-neck Dress" data-price="75" data-image="clock.jpg" onclick="addToCart('O-neck4', 45, 'dress5.jpeg')">
+            <img src="dress5.jpeg" alt="">
+            <h2>O-neck Dress</h2>
+            <p>Price: $55</p>
+        </div>
+        <div class="product" data-name="Off-shoulder Dress" data-price="75" data-image="clock.jpg" onclick="addToCart('Off-shoulder', 35, 'dress6.jpg')">
+            <img src="dress6.jpg" alt="">
+            <h2>Off-shoulder Dress</h2>
+            <p>Price: $35</p>
+        </div>
+        <div class="product" data-name="Off-shoulder Dress" data-price="75" data-image="clock.jpg" onclick="addToCart('Off-shoulder1', 35, 'dress7.jpeg')">
+            <img src="dress7.jpeg" alt="">
+            <h2>Off-shoulder Dress</h2>
+            <p>Price: $35</p>
+        </div>
+        <div class="product" data-name="Men Shirt" data-price="75" data-image="clock.jpg" onclick="addToCart('Men Shirt', 50, 'shirt6.jpeg')">
+            <img src="shirt6.jpeg" alt="">
+            <h2>Men Shirt</h2>
+            <p>Price: $50</p>
+        </div>
+        <div class="product" data-name="Party Dress" data-price="75" data-image="clock.jpg" onclick="addToCart('Party Dress1', 60, 'dress8.jpeg')">
+            <img src="dress8.jpeg" alt="">
+            <h2>Party Dress</h2>
+            <p>Price: $60</p>
+        </div>
+        <div class="product" data-name="Party Dress" data-price="75" data-image="clock.jpg" onclick="addToCart('Party Dress', 60, 'dress9.jpg')">
+            <img src="dress9.jpg" alt="">
+            <h2>Party Dress</h2>
+            <p>Price: $60</p>
+        </div>
+        <div class="product" data-name="Party Dress" data-price="75" data-image="clock.jpg" onclick="addToCart('Party Dress3', 60, 'dress10.jpg')">
+            <img src="dress10.jpg" alt="">
+            <h2>Party Dress</h2>
+            <p>Price: $60</p>
+        </div>
+        <div class="product" data-name="Men Shirt" data-price="75" data-image="clock.jpg" onclick="addToCart('Men Shirt', 50, 'shirt1.jpg')">
+            <img src="shirt1.jpg" alt="">
+            <h2>Men Shirt</h2>
+            <p>Price: $50</p>
+        </div>
+        <div class="product" data-name="Men Shirt" data-price="75" data-image="clock.jpg" onclick="addToCart('Men Shirt1', 50, 'shirt2.jpeg')">
+            <img src="shirt2.jpeg" alt="">
+            <h2>Men Shirt</h2>
+            <p>Price: $50</p>
+        </div>
+        <div class="product" data-name="Men Shirt" data-price="75" data-image="clock.jpg" onclick="addToCart('Men Shirt2', 50, 'shirt3.jpeg')">
+            <img src="shirt3.jpeg" alt="">
+            <h2>Men Shirt</h2>
+            <p>Price:$50</p>
+        </div>
+        <div class="product" data-name="Men Shirt" data-price="75" data-image="clock.jpg" onclick="addToCart('Men Shirt3', 50, 'shirt4.jpeg')">
+            <img src="shirt4.jpeg" alt="">
+            <h2>Men Shirt</h2>
+            <p>Price: $50</p>
+        </div>
+        <div class="product" data-name="Men Shirt" data-price="75" data-image="clock.jpg" onclick="addToCart('Men Shirt4', 50, 'shirt5.jpeg')">
+            <img src="shirt5.jpeg" alt="">
+            <h2>Men Shirt</h2>
+            <p>Price: $50</p>
+        </div>
+        <div class="product" data-name="Polo Dress" data-price="75" data-image="clock.jpg" onclick="addToCart('Polo', 25, 'shirt9.jpeg')">
+            <img src="shirt9.jpeg" alt="">
+            <h2>Polo Dress</h2>
+            <p>Price: $25</p>
+        </div>
+        <div class="product" data-name="Polo Dress" data-price="75" data-image="clock.jpg" onclick="addToCart('Polo.', 25, 'shirt10.jpeg')">
+            <img src="shirt10.jpeg" alt="">
+            <h2>Polo Dress</h2>
+            <p>Price: $25</p>
+        </div>
+        <div class="product" data-name="Bacca Bucci Shoe" data-price="75" data-image="clock.jpg" onclick="addToCart('Bacca Bucci', 75, 'shoe1.jpeg')">
+            <img src="shoe1.jpeg" alt="">
+            <h2>Bacca Bucci Shoe</h2>
+            <p>Price: $75</p>
+        </div>
+        <div class="product" data-name="dance Direct Shoe" data-price="75" data-image="clock.jpg" onclick="addToCart('dance Direct', 35, 'shoe3.jpg')">
+            <img src="shoe3.jpg" alt="">
+            <h2>dance Direct Shoe</h2>
+            <p>Price: $35</p>
+        </div>
+        <div class="product" data-name="dance Direct Shoe" data-price="75" data-image="clock.jpg" onclick="addToCart('dance Direct.', 35, 'shoe4.jpg')">
+            <img src="shoe4.jpg" alt="">
+            <h2>dance Direct Shoe</h2>
+            <p>Price: $35</p>
+        </div>
+        <div class="product" data-name="Bacca Bucci Shoe" data-price="75" data-image="clock.jpg" onclick="addToCart('Bacca Bucci.', 75, 'shoe5.jpg')">
+            <img src="shoe5.jpg" alt="">
+            <h2>Bacca Bucci Shoe</h2>
+            <p>Price: $75</p>
+        </div>
+        <div class="product" data-name="Adidas Shoe" data-price="75" data-image="clock.jpg" onclick="addToCart('Adidas ', 70, 'shoe6.jpg')">
+            <img src="shoe6.jpg" alt="">
+            <h2>Adidas Shoe</h2>
+            <p>Price: $70</p>
+        </div>
+        <div class="product" data-name="Magodo Shoe" data-price="75" data-image="clock.jpg" onclick="addToCart('Magodo shoe', 45, 'shoe7.jpeg')">
+            <img src="shoe7.jpeg" alt="">
+            <h2>Magodo Shoe</h2>
+            <p>Price: $45</p>
+        </div>
+        <div class="product" data-name="Adidas Shoe" data-price="75" data-image="clock.jpg" onclick="addToCart('Adidas1', 70, 'shoe8.jpg')">
+            <img src="shoe8.jpg" alt="">
+            <h2>Adidas Shoe</h2>
+            <p>Price: $70</p>
+        </div>
+        <div class="product" data-name="Nine West Shoe" data-price="75" data-image="clock.jpg" onclick="addToCart('Nine West', 50, 'shoe9.jpg')">
+            <img src="shoe9.jpg" alt="">
+            <h2>Nine West Shoe</h2>
+            <p>Price: $50</p>
+        </div>
+        <div class="product" data-name="Nine West Shoe" data-price="75" data-image="clock.jpg" onclick="addToCart('Nine West2', 50, 'shoe10.jpg')">
+            <img src="shoe10.jpg" alt="">
+            <h2>Nine West Shoe</h2>
+            <p>Price: $50</p>
+        </div>
+        <div class="product" data-name="Nine West Shoe" data-price="75" data-image="clock.jpg" onclick="addToCart('Nine West3', 50, 'shoe11.jpeg')">
+            <img src="shoe11.jpeg" alt="">
+            <h2>Nine West Shoe</h2>
+            <p>Price: $50</p>
+        </div>
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
